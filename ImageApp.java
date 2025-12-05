@@ -60,7 +60,21 @@ public class ImageApp
     // Image #3 Using the original image and pixels, create a grayscale version of the image
     Picture grayscaleImg = new Picture(pictureFile);
     Pixel[][] grayscalePixels = grayscaleImg.getPixels2D();
-
+    for (int row = 0; row < grayscalePixels.length; row++) {
+      for (int col = 0; col < grayscalePixels[row].length; col++) {
+          Pixel pixel = grayscalePixels[row][col];
+          Color currentColor = pixel.getColor();
+          int red = currentColor.getRed();
+          int green = currentColor.getGreen();
+          int blue = currentColor.getBlue();
+        
+          int average = (red + green + blue) / 3;
+          Color newColor = new Color(average, average, average);
+          pixel.setColor(newColor);
+  
+      }
+    }
+    grayscaleImg.explore(); // displays the image
     /* to be implemented */
 
     // Image #4 Using the original image and pixels, rotate it 180 degrees
